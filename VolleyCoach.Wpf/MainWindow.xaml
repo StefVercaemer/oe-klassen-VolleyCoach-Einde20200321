@@ -1,0 +1,33 @@
+﻿<Window x:Class="VolleyCoach.Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VolleyCoach.Wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="399.152" Width="469.492" Loaded="Window_Loaded">
+    <Grid>
+        <ListBox x:Name="lstPloeg" HorizontalAlignment="Left" Height="261" Margin="28,97,0,0" VerticalAlignment="Top" Width="155" SelectionChanged="lstPloeg_SelectionChanged" />
+        <Label Content="Spelers" HorizontalAlignment="Left" Margin="29,66,0,0" VerticalAlignment="Top" Width="99"/>
+        <Grid x:Name="grdDetails" Margin="218,38,0,0" HorizontalAlignment="Left" Width="233" Height="207" VerticalAlignment="Top">
+            <Label x:Name="lblGuid" Content="Id" HorizontalAlignment="Left" VerticalAlignment="Top" Width="249"/>
+            <Label Content="Naam" HorizontalAlignment="Left" Margin="0,31,0,0" VerticalAlignment="Top" Width="79"/>
+            <Label Content="Nummer" HorizontalAlignment="Left" Margin="0,62,0,0" VerticalAlignment="Top" Width="79"/>
+            <Label Content="Plaats" HorizontalAlignment="Left" Margin="0,93,0,0" VerticalAlignment="Top" Width="79"/>
+            <TextBox x:Name="txtNaam" HorizontalAlignment="Left" Height="23" Margin="84,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
+            <TextBox x:Name="txtNummer" HorizontalAlignment="Left" Height="23" Margin="84,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
+            <ComboBox x:Name="cmbPlaats" HorizontalAlignment="Left" Margin="84,97,0,0" VerticalAlignment="Top" Width="141"/>
+            <Button x:Name="btnNieuw" Content="Nieuw" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="65" />
+            <Button Content="Sla Op" HorizontalAlignment="Left" Margin="84,176,0,0" VerticalAlignment="Top" Width="65"/>
+            <Button x:Name="btnVerwijder" Content="Verwijder" HorizontalAlignment="Left" Margin="160,176,0,0" VerticalAlignment="Top" Width="65"/>
+            <Label Content="Inschrijving" HorizontalAlignment="Left" Margin="0,124,0,0" VerticalAlignment="Top" Width="79"/>
+            <DatePicker x:Name="dtpInschrijvingsDatum" HorizontalAlignment="Left" Margin="84,124,0,0" VerticalAlignment="Top" Width="141"/>
+
+        </Grid>
+        <TextBlock x:Name="tbkFeedback" HorizontalAlignment="Left" Margin="218,250,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="108" Width="233" Background="#FFFDFDD9" Padding="5" Foreground="White"/>
+        <Label Content="Ploeg" HorizontalAlignment="Left" Margin="28,6,0,0" VerticalAlignment="Top" Width="43"/>
+        <ComboBox x:Name="cmbPloeg" HorizontalAlignment="Left" Margin="80,6,0,0" VerticalAlignment="Top" Width="103"/>
+        <TextBox x:Name="txtPloegNaam" HorizontalAlignment="Left" Height="23" Margin="29,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="163,38,0,0" VerticalAlignment="Top" Width="20" Height="20"/>
+    </Grid>
+</Window>
