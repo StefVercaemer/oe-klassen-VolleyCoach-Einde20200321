@@ -30,6 +30,10 @@ namespace VolleyCoach.Wpf
         {
             InitializeComponent();
             huidigePloeg = new Ploeg("Roeselare");
+            for (int i = 0; i < Speler.AantalPerPlaats.Length; i++)
+            {
+                Console.WriteLine($"{(Plaatsen)i}: {Speler.AantalPerPlaats[i]}");
+            }
         }
 
         void KoppelPloeg()
@@ -93,6 +97,46 @@ namespace VolleyCoach.Wpf
             {
                 ToonMelding(ex.Message);
             }
+        }
+
+        private void btnSlaOp_Click(object sender, RoutedEventArgs e)
+        {
+            Guid id = (huidigeSpeler == null) ? Guid.NewGuid() : huidigeSpeler.Id;
+            string naam = txtNaam.Text;
+            int nummer = 0;
+            Plaatsen plaats = (Plaatsen)cmbPlaats.SelectedItem;
+            DateTime? inschrijvingsDatum = dtpInschrijvingsDatum.SelectedDate;
+            try
+            {
+                nummer = int.Parse(txtNummer.Text);
+                tbkFeedback.Visibility = Visibility.Hidden;
+                try
+                {
+                    Speler speler = new Speler(naam, nummer, plaats, id, inschrijvingsDatum);
+                    huidigePloeg.SlaOp(speler);
+                    KoppelPloeg();
+                    lstPloeg.SelectedItem = null;
+                    VerwijderInput();
+                    ToonMelding($"{speler.Naam} van {huidigePloeg.Naam} is opgeslagen", true);
+                }
+                catch (Exception ex)
+                {
+                    ToonMelding(ex.Message);
+                }
+            }
+            catch (Exception)
+            {
+                ToonMelding("Het nummer is geen geldig getal");
+                txtNummer.Focus();
+                txtNummer.SelectAll();
+            }
+        }
+
+        private void btnNieuw_Click(object sender, RoutedEventArgs e)
+        {
+            lstPloeg.SelectedItem = null;
+            grdDetails.IsEnabled = true;
+            txtNaam.Focus();
         }
     }
 }

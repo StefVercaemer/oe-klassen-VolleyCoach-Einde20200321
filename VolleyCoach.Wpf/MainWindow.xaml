@@ -17,8 +17,8 @@
             <TextBox x:Name="txtNaam" HorizontalAlignment="Left" Height="23" Margin="84,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
             <TextBox x:Name="txtNummer" HorizontalAlignment="Left" Height="23" Margin="84,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"/>
             <ComboBox x:Name="cmbPlaats" HorizontalAlignment="Left" Margin="84,97,0,0" VerticalAlignment="Top" Width="141"/>
-            <Button x:Name="btnNieuw" Content="Nieuw" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="65" />
-            <Button Content="Sla Op" HorizontalAlignment="Left" Margin="84,176,0,0" VerticalAlignment="Top" Width="65"/>
+            <Button x:Name="btnNieuw" Content="Nieuw" HorizontalAlignment="Left" Margin="10,176,0,0" VerticalAlignment="Top" Width="65" Click="btnNieuw_Click" />
+            <Button x:Name="btnSlaOp" Content="Sla Op" HorizontalAlignment="Left" Margin="84,176,0,0" VerticalAlignment="Top" Width="65" Click="btnSlaOp_Click"/>
             <Button x:Name="btnVerwijder" Content="Verwijder" HorizontalAlignment="Left" Margin="160,176,0,0" VerticalAlignment="Top" Width="65" Click="btnVerwijder_Click"/>
             <Label Content="Inschrijving" HorizontalAlignment="Left" Margin="0,124,0,0" VerticalAlignment="Top" Width="79"/>
             <DatePicker x:Name="dtpInschrijvingsDatum" HorizontalAlignment="Left" Margin="84,124,0,0" VerticalAlignment="Top" Width="141"/>

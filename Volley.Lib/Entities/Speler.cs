@@ -23,6 +23,8 @@ namespace Volley.Lib.Entities
 
         public DateTime InschrijvingsDatum { get; set; }
 
+        public static int[] AantalPerPlaats { get; set; } = new int[3];
+        
         public Speler() : this("John Doe", 0)
         {
 
@@ -35,10 +37,17 @@ namespace Volley.Lib.Entities
             Naam = naam;
             Nummer = (nr <= 0) ? random.Next(minNummer, maxNummer + 1) : nr;
             Plaats = positie;
+            VerhoogAantalPerPlaats();
             if (guid == null) Id = Guid.NewGuid();
             else Id = (Guid)guid;
             if (datum == null) InschrijvingsDatum = DateTime.Today;
             else InschrijvingsDatum = (DateTime)datum;
+        }
+
+        void VerhoogAantalPerPlaats()
+        {
+            int indexInArray = (int)Plaats;
+            AantalPerPlaats[indexInArray]++;
         }
 
         public override string ToString()

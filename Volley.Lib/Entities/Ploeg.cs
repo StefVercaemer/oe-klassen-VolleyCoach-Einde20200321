@@ -52,6 +52,32 @@ namespace Volley.Lib.Entities
             ("Geef een geldige speler door om te verwijderen");
         }
 
+        public void SlaOp(Speler opTeSlaan)
+        {
+            if (opTeSlaan == null) throw new Exception("Geef een geldige speler door");
+            else if (!BehoortSpelerToPloeg(opTeSlaan)) Spelers.Add(opTeSlaan);
+            else
+            {
+                int indexSpeler = GeefIndexInPloeg(opTeSlaan);
+                Spelers[indexSpeler] = opTeSlaan;
+            }
+        }
+
+        int GeefIndexInPloeg(Speler teChecken)
+        {
+            int index = -1;
+            for (int i = 0; i < Spelers.Count; i++)
+            {
+                if (Spelers[i].Id == teChecken.Id)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+
+
         bool BehoortSpelerToPloeg(Speler teChecken)
         {
             bool gevonden = false;
