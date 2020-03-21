@@ -33,7 +33,7 @@ namespace Volley.Lib.Entities
             DateTime? datum = null)
         {
             Naam = naam;
-            Nummer = (nr <= 0) ? random.Next(minNummer, maxNummer) : nr;
+            Nummer = (nr <= 0) ? random.Next(minNummer, maxNummer + 1) : nr;
             Plaats = positie;
             if (guid == null) Id = Guid.NewGuid();
             else Id = (Guid)guid;

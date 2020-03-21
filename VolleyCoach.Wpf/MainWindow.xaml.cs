@@ -23,42 +23,33 @@ namespace VolleyCoach.Wpf
     public partial class MainWindow : Window
     {
         Speler huidigeSpeler;
-        List<Speler> huidigePloeg;
+        Ploeg huidigePloeg;
         //WedstrijdBeheer huidigeWedstrijd;
 
         public MainWindow()
         {
             InitializeComponent();
-            MaakPloeg();
-        }
-
-        void MaakPloeg()
-        {
-            Speler jan = new Speler();
-            jan.Id = Guid.NewGuid();
-            jan.Naam = "Jan";
-            jan.Plaats = Plaatsen.Passeur;
-
-            //Met object initializer
-            Speler piet = new Speler
-            {
-                Id = Guid.NewGuid(),
-                Naam = "Piet",
-                Nummer = 2,
-                Plaats = Plaatsen.Aanvaller
-            };
-
-            Speler frank = new Speler("Frank", 3, Plaatsen.Libero);
-
-            Speler koen = new Speler("Koen", 4, guid: Guid.NewGuid());
-
-            huidigePloeg = new List<Speler> { jan, piet, frank, koen };
+            huidigePloeg = new Ploeg("Roeselare");
         }
 
         void KoppelPloeg()
         {
-            lstPloeg.ItemsSource = huidigePloeg;
+            lstPloeg.ItemsSource = huidigePloeg.Spelers;
             lstPloeg.Items.Refresh();
+
+            cmbPloeg.Items.Clear();
+            cmbPloeg.Items.Add(huidigePloeg);
+            //cmbPloeg.ItemsSource = huidigeWedstrijd.DeelnemendePloegen;
+            cmbPloeg.SelectedIndex = 0;
+        }
+
+        void VerwijderInput()
+        {
+            ClearPanel(grdDetails);
+            huidigeSpeler = null;
+            dtpInschrijvingsDatum.SelectedDate = DateTime.Today;
+            cmbPlaats.SelectedIndex = 0;
+            grdDetails.IsEnabled = false;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -66,9 +57,6 @@ namespace VolleyCoach.Wpf
             KoppelPloeg();
             cmbPlaats.ItemsSource = Enum.GetValues(typeof(Plaatsen));
             grdDetails.IsEnabled = false;
-
-            //cmbPloeg.ItemsSource = huidigeWedstrijd.DeelnemendePloegen;
-            //cmbPloeg.SelectedIndex = 0;
             tbkFeedback.Visibility = Visibility.Hidden;
         }
 
@@ -85,6 +73,25 @@ namespace VolleyCoach.Wpf
 
                 grdDetails.IsEnabled = true;
                 tbkFeedback.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                VerwijderInput();
+            }
+        }
+
+        private void btnVerwijder_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                huidigePloeg.Verwijder(huidigeSpeler);
+                ToonMelding($"{huidigeSpeler.Naam} is verwijderd", true);
+                lstPloeg.SelectedItem = null;
+                KoppelPloeg();
+            }
+            catch (Exception ex)
+            {
+                ToonMelding(ex.Message);
             }
         }
     }
